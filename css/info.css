@@ -1,0 +1,9 @@
+.logo{
+	width: auto;
+	height: 150px;
+    background-size: 30%;
+}
+.intro p{
+    text-shadow: 10px;
+    justify-self: center;
+}

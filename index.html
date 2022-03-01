@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Proyecto InfraWeb</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap Files -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+	<!-- Page CSS -->
+	<link rel="stylesheet" href="css/page.css">
+	<!-- JS-->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src ="js/app.js"></script>
+	<script src="js/page.js"></script>
+</head>
+<body>
+
+	<!-- Top Area -->
+
+	<div class="d-flex flex-row justify-content-center">
+		<img src="images/escudo_itt_grande.png" class="img-fluid logo p-3">
+	</div>
+
+	<!-- Banner -->
+	<div class="d-flex banner"></div>
+
+	<!-- Info Section -->
+	<div class="d-flex px-5 flex-row justify-content-around my-3 flex-wrap">
+		<div class="callOuts d-flex flex-column flex-fill p-4 mx-2 my-2 my-lg-1 text-center">
+			<img src="images/Post_Icon.png" class="img-fluid mx-auto d-block">
+			<h3>Publicaciones</h3>
+			<p>Analize sus publicaciones con nuestra app.</p>
+		</div>
+		<div class="callOuts d-flex flex-column flex-fill p-4 mx-2 my-2 my-lg-1 text-center">
+			<img src="images/Reception_Icon.png" class="img-fluid mx-auto d-block">
+			<h3>Recepción</h3>
+			<p>Obtenga la recepción de su contenido.</p>
+		</div>
+		<div class="callOuts d-flex flex-column flex-fill p-4 mx-2 my-2 my-lg-1 text-center">
+			<img src="images/DataAnalis.png" class="img-fluid mx-auto d-block">
+			<h3>Análisis</h3>
+			<p>Analizamos las estadísticas recopiladas de su contenido.</p>
+		</div>
+	</div>
+<!--Sección de mineria-->
+	<div class="d-flex justify-content-center ">
+		<div class="publicacion"></div>
+		<div class="botones-pub">
+			<div >
+				<div class="form-group">
+				  <p>En el siguiente diálogo, favor de pegar la url de la publicación a analizar</p>
+				  <input class="form-control" id="pubtxt" type="url">
+				</div>
+				<div>
+					<button id="btnan" type="button" class="btn btn-outline-primary">Analizar</button>
+				  </div>
+			  </div>
+			  
+		</div>
+	</div>
+<!-- Resultados-->
+	<blockquote class="blockquote text-center p-b-5" >
+		<p  class ="mb-0" id="resultados">			
+		</p>
+	</blockquote>
+	
+	<div class="d-flex align-items-center px-5 mb-3">
+		<div class="w-25 pl-2">
+			<img src="images/Campaing.jpg" class="img-fluid">
+		</div>
+			<div class="p-2 ml-3 w-75">
+				<h4>Infra</h4>
+				<p>La finalidad de este proyecto es definir un sitio web 
+					que le proporcione al usuario una manera de obtener el texto
+					de un Tweet al ingresar solamente el enlace del tweet
+				</p>
+			</div>
+	</div>
+
+	
+	<div class="d-flex bottomArea justify-content-center px-5 py-3">
+		<div class="w-60 mr-2">
+			<img class="img-fluid h-30" src="images/escudo_itt_grande.png">
+		</div>
+		<div class="d-flex flex-column w-20 mt-3">
+			<h5>Contácteme:</h5>
+			<div><b>Nombre:</b> Diego Arturo Cadena Flores</div>
+			<div><b>Email:</b> diarcadenafl@ittepic.edu.mx</div>
+			<div><b>No.Control:</b> 18401089</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap Files -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- Page JS -->
+	
+	
+	<script src="https://kit.fontawesome.com/a390a542df.js" crossorigin="anonymous"></script>
+</body>
+</html>
