@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "run": "server.js"
@@ -14,15 +15,16 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jQuery": "^1.7.4",
-    "node-fetch": "^3.1.0",
+    "node-fetch": "^3.2.1",
     "request": "^2.88.2",
+    "tweet-json-to-html": "^1.0.2",
     "twit": "^2.2.11",
+    "twitter-api-v2": "^1.11.0",
     "twitter-v2": "^1.1.0"
   },
   "engines": {
     "node": "14.x"
   },
-
   "devDependencies": {
     "jquery": "^3.6.0"
   }
