@@ -16,11 +16,14 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
   next();
 });
-const apponlyClient = new TwitterApi('AAAAAAAAAAAAAAAAAAAAAOrcWQEAAAAAVd8xl8wTnoFPfyPZnbicfv5JuHM%3D0gXK89sM7HshxaRn8wHacElUPCBgXVEIPp8bQ8trCCIh4QLrlV');
+/* const apponlyClient = new TwitterApi('AAAAAAAAAAAAAAAAAAAAAOrcWQEAAAAAVd8xl8wTnoFPfyPZnbicfv5JuHM%3D0gXK89sM7HshxaRn8wHacElUPCBgXVEIPp8bQ8trCCIh4QLrlV');
 const v2Client = apponlyClient.v2;
 const client = new Twitter({
     bearer_token: 'AAAAAAAAAAAAAAAAAAAAAOrcWQEAAAAAVd8xl8wTnoFPfyPZnbicfv5JuHM%3D0gXK89sM7HshxaRn8wHacElUPCBgXVEIPp8bQ8trCCIh4QLrlV'
 });
+ */
+const client = new TwitterApi({clientId : 'Z2BGIRuGWtFdfpwYJEJnZRfnp', clientSecret:'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj'});
+
 console.log("en page");
 
 app.get('/Singletweet', (req,res) => {

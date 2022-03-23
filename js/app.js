@@ -56,7 +56,23 @@ $(document).ready(function () {
             }
         });
     });//function post tweet
-    
+    $('#btnUserTL').on('click',function(){
+        let name = $('#userTimeL').val();
+        console.log('name:'+name);
+        $.ajax({
+            type: 'get',
+            url : 'http://localhost:3100/userTL',
+            data :{
+                id:name
+            },
+            success: function(res){
+                console.log('res userTL:');
+                console.log(res);
+                $.each(res.data, function(text, tx ){
+                    
+                });
+            }
+        });
 });
 
 function separateId(str) {
