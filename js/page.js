@@ -42,9 +42,9 @@ app.get('/Singletweet', (req,res) => {
         res.send(error)
       });
 });
-app.get('/tweets',(req,res)=>{
+/* app.get('/tweets',(req,res)=>{
     v2Client.tweet(req.query.text);
-});
+}); */
 app.get('/userTL', (req,res) => {
   /*   //console.log(req);
       client
