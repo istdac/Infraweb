@@ -68,7 +68,7 @@ $(document).ready(function () {
             success: function(res){
                 console.log('res userTL:');
                 console.log(res);
-                let TL = res.realData.data;
+                let TL = res._realData.data;
                 console.log(TL);
                 $.each(TL, function(i,t){
                     $('#resarea').append(
