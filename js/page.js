@@ -62,7 +62,7 @@ app.get('/userTL', (req,res) => {
         }); */
         v2Client.userByUsername(req.query.id).then(user=>{
           let TL = v2Client.userTimeline(user.id);
-          res.send(TL);
+          res.json(TL);
         }).catch(error =>{
           res.send(error);
         });
