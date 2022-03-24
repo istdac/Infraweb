@@ -16,7 +16,7 @@ $(document).ready(function () {
             success: function(res) {
                 console.log("res:");
                 console.log(res.data);
-                $('#resultados').text(res.data.text);
+                $('#resultados').html('Texto' +res.data.text);
                 
             }
         })
