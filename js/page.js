@@ -3,13 +3,13 @@ const Twitter = require('twitter-v2');
 const { TwitterApi } = require('twitter-api-v2');
 const tweetJsonToHtml = require('tweet-json-to-html');
 const app = express();
-/* let port = process.env.PORT;
+let port = process.env.PORT;
 if (port == null || port == "") {
   port = 8000;
 }
 app.listen(port);
-console.log("port:"+port); */
-app.listen(3100, () => console.log('Server running'));
+//console.log("port:"+port);
+//app.listen(3100, () => console.log('Server running'));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
