@@ -55,16 +55,10 @@ app.get('/userTL', (req,res) => {
         .catch(error => {
           res.send(error);
         }); */
-        /* v2Client.userTimeline(req.query.id).then(twwwt =>{
+        v2Client.userTimeline(req.query.id).then(twwwt =>{
           res.json(twwwt);
         }).catch(error =>{
           res.send(error)
-        }); */
-        v2Client.userByUsername(req.query.id).then(user=>{
-          let TL = v2Client.userTimeline(user.id);
-          res.json(TL);
-        }).catch(error =>{
-          res.send(error);
         });
   });
   app.get('/userSearch',(req,res) =>{
