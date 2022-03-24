@@ -69,9 +69,10 @@ $(document).ready(function () {
                 console.log('res userTL:');
                 console.log(res);
                 let TL = res.realData.data;
+                console.log(TL);
                 $.each(TL, function(i,t){
                     $('#resarea').append(
-                        'Posición: '+i + '<br/>Texto: '+t.text
+                        '<br/> Posición: '+i + '<br/> Texto: '+t.text
                     );
                 });
             }
