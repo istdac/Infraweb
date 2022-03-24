@@ -9,7 +9,7 @@ $(document).ready(function () {
         console.log(ID);
         $.ajax({
             type: 'get',
-            url: 'http://localhost:3100/Singletweet',
+            url: 'https://infrawebdacf.herokuapp.com/Singletweet',
             data: {
                 id : ID
             },
@@ -26,7 +26,7 @@ $(document).ready(function () {
         console.log('name:'+name);
         $.ajax({
             type: 'get',
-            url : 'http://localhost:3100/userSearch',
+            url : 'https://infrawebdacf.herokuapp.com/userSearch',
             data :{
                 username:name
             },
@@ -43,7 +43,7 @@ $(document).ready(function () {
         let content = $('#postTwee').val();
         $.ajax({
             type:'get',
-            url: 'http://localhost:3100/tweets',
+            url: 'https://infrawebdacf.herokuapp.com/tweets',
             data:{
                 text : content
             },
@@ -61,7 +61,7 @@ $(document).ready(function () {
         console.log('name:'+name);
         $.ajax({
             type: 'get',
-            url : 'http://localhost:3100/userTL',
+            url : 'https://infrawebdacf.herokuapp.com/userTL',
             data :{
                 id:name
             },
@@ -80,5 +80,3 @@ function separateId(str) {
     id = id[id.length-1].split('?')[0];
     return id;
 }
-
-
