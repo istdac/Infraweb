@@ -66,10 +66,16 @@ $(document).ready(function () {
                 id:name
             },
             success: function(res){
-                console.log('res userTL:');
+               /*  console.log('res userTL:');
                 console.log(res);
-                console.log(res._realData);
-                
+                console.log(res._realData.data); */
+                $('#resarea').html();
+                $.each(res._realData.data,function(i,v){
+                    console.log('Id'+i+' text '+v.text);
+                    $('#resarea').append(
+                        '<br/>ID Tweet:"'+v.id+ '" Text: '+v.text
+                    );
+                });
             }
         });
     });//get user TL
