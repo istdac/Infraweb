@@ -68,13 +68,10 @@ $(document).ready(function () {
             success: function(res){
                 console.log('res userTL:');
                 console.log(res);
-                $.each(res.data, function(text, tx ){
-                    
-                });
             }
         });
+    });
 });
-
 function separateId(str) {
     let id = str.split('/');
     id = id[id.length-1].split('?')[0];
