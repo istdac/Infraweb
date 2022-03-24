@@ -70,7 +70,7 @@ $(document).ready(function () {
                 console.log(res);
             }
         });
-    });
+    });//get user TL
 });
 function separateId(str) {
     let id = str.split('/');
