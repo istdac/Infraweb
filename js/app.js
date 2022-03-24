@@ -68,13 +68,8 @@ $(document).ready(function () {
             success: function(res){
                 console.log('res userTL:');
                 console.log(res);
-                let TL = res._realData.data;
-                console.log(TL);
-                $.each(TL, function(i,t){
-                    $('#resarea').append(
-                        '<br/> Posición: '+i + '<br/> Texto: '+t.text
-                    );
-                });
+                console.log(res._realData);
+                
             }
         });
     });//get user TL
