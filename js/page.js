@@ -1,6 +1,6 @@
 const express = require('express');
 const Twitter = require('twitter-v2');
-const { TwitterApi } = require('twitter-api-v2');
+const { TwitterApi, TweetSearchAllV2Paginator } = require('twitter-api-v2');
 const tweetJsonToHtml = require('tweet-json-to-html');
 const app = express();
 let port = process.env.PORT;
@@ -61,6 +61,13 @@ app.get('/userTL', (req,res) => {
           res.send(error)
         });
   });
+  app.get('/mentions',(req,res)=>{
+    v2Client.userMentionTimeline(req.query.id).then(tweets=>{
+      res.json(tweets);
+    }).catch(error =>{
+      res.send(error)
+    });
+  });
   app.get('/userSearch',(req,res) =>{
       v2Client.userByUsername(req.query.username).then(user =>{
         let html  = tweetJsonToHtml(res.json(user))
@@ -69,3 +76,45 @@ app.get('/userTL', (req,res) => {
         res.send(error);
       });
   });
+  app.get('/likedby',(req,res)=>{
+      v2Client.tweetLikedBy(req.query.id).then(users=>{
+        res.json(users);
+      }).catch(error =>{
+        res.send(error)
+      });
+  });
+  app.get('/rtby',(req,res)=>{
+    v2Client.tweetRetweetedBy(req.query.id).then(users=>{
+      res.json(users);
+    }).catch(error =>{
+      res.send(error)
+    });
+});
+app.get('/userLikes',(req,res)=>{
+  v2Client.userLikedTweets(req.query.id).then(likes=>{
+    res.json(likes);
+  }).catch(error =>{
+    res.send(error)
+  });
+});
+app.get('/followers',(req,res)=>{
+  v2Client.followers(req.query.id).then(users=>{
+    res.json(users);
+  }).catch(error =>{
+    res.send(error)
+  });
+});
+app.get('/following',(req,res)=>{
+  v2Client.following(req.query.id).then(users=>{
+    res.json(users);
+  }).catch(error =>{
+    res.send(error)
+  });
+});
+app.get('/myblocklist',(req,res)=>{
+  v2Client.userBlockingUsers(req.query.id).then(users=>{
+    res.json(users);
+  }).catch(error =>{
+    res.send(error)
+  });
+});
