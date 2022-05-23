@@ -158,7 +158,7 @@ app.get('/myblocklist',(req,res)=>{
 });
 /*AUTH METHODS   */
 app.get('/postTweet',(req,res)=>{
-    v1ClientAuth.tweet(req.text).then(
+    v2ClientAuth.tweet(req.text).then(
       tweet=>{
         res.json(tweet);
       }
