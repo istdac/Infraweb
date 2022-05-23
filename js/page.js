@@ -32,9 +32,6 @@ const v1ClientAuth = clientAuth.v1;
 
 console.log("en page");
 
-// Don't forget to specify 'offline.access' in scope list if you want to refresh your token later
-const { url, codeVerifier, state } = client.generateOAuth2AuthLink("http://127.0.0.1:5501/index.html", { scope: ['tweet.read', 'users.read', 'offline.access', ...] });
-
 app.get('/callback', (req, res) => {
   // Extract state and code from query string
   const { state, code } = req.query;
