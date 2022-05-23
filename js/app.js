@@ -1,8 +1,20 @@
 $(document).ready(function () {
     console.log("dom ready")
-    
+    $('#loginbtn').on('click', function() {
+        
+        $.ajax({
+            type: 'get',
+            url: 'https://infrawebdacf.herokuapp.com/callback',
+            data: {
+                
+            },
+            success: function(res) {
+                console.log("res:");
+            }
+        })
+    });//getTweet
     $('#btnan').on('click', function() {
-        let idStr = $('#pubtxt').val();
+        let idStr = $('#IDTweet').val();
         // let data = T.analize(ID);
         // console.log(data)
         let ID = separateId(idStr);
@@ -22,7 +34,7 @@ $(document).ready(function () {
         })
     });//getTweet
     $('#btnUserSearch').on('click',function(){
-        let name = $('#userNameSearch').val();
+        let name = $('#UserID').val();
         console.log('name:'+name);
         $.ajax({
             type: 'get',
@@ -43,21 +55,21 @@ $(document).ready(function () {
         let content = $('#postTwee').val();
         $.ajax({
             type:'get',
-            url: 'https://infrawebdacf.herokuapp.com/tweets',
+            url: 'https://infrawebdacf.herokuapp.com/postTweet',
             data:{
                 text : content
             },
             success:function(res){
                 console.log("res post tweet:");
-                console.log(res.data);
+                console.log(res);
                 $('#resultados').text(
-                    'Tweet creado con id:'+res.data[0]
+                    'Tweet creado con id:'+res.data.id + 'texto: '+ res.data.text
                 );
             }
         });
     });//function post tweet
     $('#btnUserTL').on('click',function(){
-        let name = $('#userTimeL').val();
+        let name = $('#UserID').val();
         console.log('name:'+name);
         $.ajax({
             type: 'get',
@@ -80,7 +92,7 @@ $(document).ready(function () {
         });
     });//get user TL
     $('#btnUserLikes').on('click',function(){
-        let name = $('#userLikes').val();
+        let name = $('#UserID').val();
         console.log('name:'+name);
         $.ajax({
             type: 'get',
@@ -103,7 +115,7 @@ $(document).ready(function () {
         });
     });//get userLikes
     $('#btnUserFollowers').on('click',function(){
-        let name = $('#userFollowers').val();
+        let name = $('#UserID').val();
         console.log('name:'+name);
         $.ajax({
             type: 'get',
@@ -126,7 +138,7 @@ $(document).ready(function () {
         });
     });//get userFollowers
     $('#btnUserFollowing').on('click',function(){
-        let name = $('#userFollowing').val();
+        let name = $('#UserID').val();
         console.log('name:'+name);
         $.ajax({
             type: 'get',
@@ -149,7 +161,7 @@ $(document).ready(function () {
         });
     });//get userFollowing   
     $('#btnTweetLikedBy').on('click',function(){
-        let name = $('#tweeLikedby').val();
+        let name = $('#IDTweet').val();
         console.log('name:'+name);
         $.ajax({
             type: 'get',
@@ -158,21 +170,20 @@ $(document).ready(function () {
                 id:name
             },
             success: function(res){
-               /*  console.log('res userTL:');
+                console.log('reslikedby:');
                 console.log(res);
-                console.log(res._realData.data); */
                 $('#resarea').empty();
-                $.each(res._realData.data,function(i,v){
+                $.each(res.data,function(i,v){
                    // console.log('Id'+i+' text '+v.text);
                     $('#resarea').append(
-                        '<br/>Usuario:"'+v.id+ '" Nombre: '
+                        '<br/>Usuario:"'+v.id+ '" Nombre: '+v.name +' Username: '+v.username
                     );
                 });
             }
         });
     });//get tweetlikedby 
     $('#btnTweetRTBy').on('click',function(){
-        let name = $('#TweeRTby').val();
+        let name = $('#IDTweet').val();
         console.log('name:'+name);
         $.ajax({
             type: 'get',
@@ -181,21 +192,21 @@ $(document).ready(function () {
                 id:name
             },
             success: function(res){
-               /*  console.log('res userTL:');
+                console.log('res retweetedby:');
                 console.log(res);
-                console.log(res._realData.data); */
+                
                 $('#resarea').empty();
-                $.each(res._realData.data,function(i,v){
+                $.each(res.data,function(i,v){
                    // console.log('Id'+i+' text '+v.text);
                     $('#resarea').append(
-                        '<br/>Usuario:"'+v.id+ '" Nombre: '+v.text
+                        '<br/>Usuario:"'+v.id+ '" Nombre: '+v.name +' Username: '+v.username
                     );
                 });
             }
         });
     });//get tweetlikedby 
     $('#btnUserMentions').on('click',function(){
-        let name = $('#userMentions').val();
+        let name = $('#UserID').val();
         console.log('name:'+name);
         $.ajax({
             type: 'get',
@@ -218,7 +229,7 @@ $(document).ready(function () {
         });
     });//get userMentions
     $('#btnUserBlockList').on('click',function(){
-        let name = $('#userblocks').val();
+        let name = $('#UserID').val();
         console.log('name:'+name);
         $.ajax({
             type: 'get',

@@ -1,7 +1,6 @@
 const express = require('express');
 const Twitter = require('twitter-v2');
-const { TwitterApi, TweetSearchAllV2Paginator } = require('twitter-api-v2');
-const tweetJsonToHtml = require('tweet-json-to-html');
+const { TwitterApi, TweetSearchAllV2Paginator, UserFollowersV2Paginator } = require('twitter-api-v2');
 const app = express();
 let port = process.env.PORT;
 if (port == null || port == "") {
@@ -18,13 +17,51 @@ app.use(function(req, res, next) {
 });
 const apponlyClient = new TwitterApi('AAAAAAAAAAAAAAAAAAAAAOrcWQEAAAAAVd8xl8wTnoFPfyPZnbicfv5JuHM%3D0gXK89sM7HshxaRn8wHacElUPCBgXVEIPp8bQ8trCCIh4QLrlV');
 const v2Client = apponlyClient.v2;
-const client = new Twitter({
+/*const client = new Twitter({
     bearer_token: 'AAAAAAAAAAAAAAAAAAAAAOrcWQEAAAAAVd8xl8wTnoFPfyPZnbicfv5JuHM%3D0gXK89sM7HshxaRn8wHacElUPCBgXVEIPp8bQ8trCCIh4QLrlV'
-});
+});*/
 
-const clientAuth = new TwitterApi({clientId : 'Z2BGIRuGWtFdfpwYJEJnZRfnp', clientSecret:'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj'});
+const clientAuth = new TwitterApi({
+  clientId : 'Z2BGIRuGWtFdfpwYJEJnZRfnp', 
+  clientSecret:'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj',
+  accessToken: '1466281644944359429-Q0dwykuyh5H1B4GELC1XYBns2NT10e',
+  accessSecret: 'LUzrURXkjwXIBgDyaMLv575G5j2hLPF4d10b7FM9iQ21u',
+});
+const v2ClientAuth = clientAuth.v2;
+const v1ClientAuth = clientAuth.v1;
 
 console.log("en page");
+
+// Don't forget to specify 'offline.access' in scope list if you want to refresh your token later
+const { url, codeVerifier, state } = client.generateOAuth2AuthLink("http://127.0.0.1:5501/index.html", { scope: ['tweet.read', 'users.read', 'offline.access', ...] });
+
+app.get('/callback', (req, res) => {
+  // Extract state and code from query string
+  const { state, code } = req.query;
+  // Get the saved codeVerifier from session
+  const { codeVerifier, state: sessionState } = req.session;
+
+  if (!codeVerifier || !state || !sessionState || !code) {
+    return res.status(400).send('You denied the app or your session expired!');
+  }
+  if (state !== sessionState) {
+    return res.status(400).send('Stored tokens didnt match!');
+  }
+
+  // Obtain access token
+  const client = new TwitterApi({ clientId: CLIENT_ID, clientSecret: CLIENT_SECRET });
+
+  client.loginWithOAuth2({ code, codeVerifier, redirectUri: CALLBACK_URL })
+    .then(async ({ client: loggedClient, accessToken, refreshToken, expiresIn }) => {
+      // {loggedClient} is an authenticated client in behalf of some user
+      // Store {accessToken} somewhere, it will be valid until {expiresIn} is hit.
+      // If you want to refresh your token later, store {refreshToken} (it is present if 'offline.access' has been given as scope)
+
+      // Example request
+      const { data: userObject } = await loggedClient.v2.me();
+    })
+    .catch(() => res.status(403).send('Invalid verifier or access tokens!'));
+});
 
 app.get('/Singletweet', (req,res) => {
 /*   //console.log(req);
@@ -77,7 +114,7 @@ app.get('/userTL', (req,res) => {
       });
   });
   app.get('/likedby',(req,res)=>{
-      v2Client.tweetLikedBy(req.query.id).then(users=>{
+      v2Client.tweetLikedBy(req.query.id,{asPaginator:true}).then(users=>{
         res.json(users);
       }).catch(error =>{
         res.send(error)
@@ -98,7 +135,7 @@ app.get('/userLikes',(req,res)=>{
   });
 });
 app.get('/followers',(req,res)=>{
-  v2Client.followers(req.query.id).then(users=>{
+  v2Client.followers(req.query.id,{asPaginator:true}).then(users=>{
     res.json(users);
   }).catch(error =>{
     res.send(error)
@@ -106,6 +143,7 @@ app.get('/followers',(req,res)=>{
 });
 app.get('/following',(req,res)=>{
   v2Client.following(req.query.id).then(users=>{
+    console.log(json(users));
     res.json(users);
   }).catch(error =>{
     res.send(error)
@@ -115,6 +153,79 @@ app.get('/myblocklist',(req,res)=>{
   v2Client.userBlockingUsers(req.query.id).then(users=>{
     res.json(users);
   }).catch(error =>{
+    res.send(error)
+  });
+});
+/*AUTH METHODS   */
+app.get('/postTweet',(req,res)=>{
+    v1ClientAuth.tweet(req.text).then(
+      tweet=>{
+        res.json(tweet);
+      }
+    ).catch(error=>{
+      res.send(error)
+    });
+});
+app.get('/reply',(req,res)=>{
+  v1ClientAuth.reply(req.text,req.id).then(
+    tweet=>{
+      res.json(tweet);
+    }
+  ).catch(error=>{
+    res.send(error)
+  });
+});
+app.get('/deleteTweet',(req,res)=>{
+  v1ClientAuth.deleteTweet(req.id).then(
+    tweet=>{
+      res.json(tweet);
+    }
+  ).catch(error=>{
+    res.send(error)
+  });
+});
+app.get('/embed',(req,res)=>{
+  v1ClientAuth.oembedTweet(req.id).then(
+    tweet=>{
+      res.json(tweet);
+    }
+  ).catch(error=>{
+    res.send(error)
+  });
+});
+app.get('/like',(req,res)=>{
+  v2ClientAuth.like(v2ClientAuth.id,req.id).then(
+    tweet=>{
+      res.json(tweet);
+    }
+  ).catch(error=>{
+    res.send(error)
+  });
+});
+app.get('/unlike',(req,res)=>{
+  v2ClientAuth.unlike(v2ClientAuth.id,req.id).then(
+    tweet=>{
+      res.json(tweet);
+    }
+  ).catch(error=>{
+    res.send(error)
+  });
+});
+app.get('/homeTL',(req,res)=>{
+  v2ClientAuth.homeTimeline({ exclude: 'replies' }).then(
+    tweet=>{
+      res.json(tweet);
+    }
+  ).catch(error=>{
+    res.send(error)
+  });
+});
+app.get('/homeTL',(req,res)=>{
+  v2ClientAuth.homeTimeline({ exclude: 'replies' }).then(
+    tweet=>{
+      res.json(tweet);
+    }
+  ).catch(error=>{
     res.send(error)
   });
 });

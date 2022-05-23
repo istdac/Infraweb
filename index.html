@@ -50,55 +50,56 @@
 		<div class="botones-pub">
 			<div>
 				<div class="form-group">
-
-					<p>En el siguiente diálogo, favor de pegar la url de la publicación a analizar</p>
-				    <input class="form-control" id="pubtxt" type="url">
-					<div>
-						<button id="btnan" type="button" class="btn btn-outline-primary">Analizar</button>
-					</div>
-
-					<p>En el siguiente dialogo, inserte el nombre del usuario que desea buscar </p>
-					<input class="form-control" id="userNameSearch" type="text">
-					<div>
-						<button id="btnUserSearch" type="button" class="btn btn-outline-primary">Buscar Usuario</button>
-					</div>
+					<div class="form-group row">
+						<label for="IDTweet" class="col-sm-2 col-form-label">ID Tweet</label>
+						<div class="col-sm-10">
+						  <input type="text" class="form-control" id="IDTweet" placeholder="IDTweet">
+						</div>
+					  </div>
+					  <div class="form-group row">
+						<label for="UserID" class="col-sm-2 col-form-label">UserID</label>
+						<div class="col-sm-10">
+						  <input type="text" class="form-control" id="UserID" placeholder="UserID">
+						</div>
+					  </div>
+					  <div class="form-group row">
+						<div class="col-sm-10">
+							<button id="loginbtn" type="button" class="btn btn-primary">Login</button>
+						</div>
+					  </div>
+					<p>Operaciónes que requieren el ID de un Tweet</p>
+					<div class="btn-group btn-group-xs">
+						<button id="btnan" type="button" class="btn btn-primary">Analizar</button>
+						<button id="btnDeleteTweet" type="button" class="btn btn-primary">Borrar Tweet</button>
+						<button id="btnEmbed" type="button" class="btn btn-primary">Embed</button>
+						<button id="btnLike" type="button" class="btn btn-primary">Like</button>
+						<button id="btnTweetLikedBy" type="button" class="btn btn-primary">Likedby</button>
+						<button id="btnTweetRTBy" type="button" class="btn btn-primary">Retweetedby</button>
+					  </div> 
+					
+					  <p>Operaciónes que requieren el ID o nombre de un usuario</p>
+					  <div class="btn-group btn-group-xs">
+						  <button id="btnUserSearch" type="button" class="btn btn-primary">Buscar Usuario</button>
+						  <button id="btnUserTL" type="button" class="btn btn-primary">Línea de tiempo de usuario</button>
+						  <button id="btnUserLikes" type="button" class="btn btn-primary">Likes de usuario</button>
+						  <button id="btnUserMentions" type="button" class="btn btn-primary">Menciones de usuario</button>
+						  <button id="btnUserFollowing" type="button" class="btn btn-primary">Lista Siguiendo</button>
+						  <button id="btnUserFollowers" type="button" class="btn btn-primary">Seguidores de usuario</button>
+						  <button type="button" class="btn btn-primary"></button>
+						  <button type="button" class="btn btn-primary"></button>
+						  <button type="button" class="btn btn-primary"></button>
+						  <button type="button" class="btn btn-primary"></button>
+						  <button type="button" class="btn btn-primary"></button>
+						  <button type="button" class="btn btn-primary"></button>
+						  
+						</div> 
 
 					<p>En el siguiente dialogo, inserte el texto de lo que desea twittear </p>
 					<input class="form-control" id="postTwee" type="text">
 					<div>
 						<button id="btnPostTweet" type="button" class="btn btn-outline-primary">Publicar tweet</button>
 					</div>
-
-					<p>En el siguiente dialogo, inserte el id del usuario que desea buscar y ver su línea del tiempo </p>
-					<input class="form-control" id="userTimeL" type="text">
-					<div>
-						<button id="btnUserTL" type="button" class="btn btn-outline-primary">Línea de tiempo de usuario</button>
-					</div>
-
-					<p>En el siguiente dialogo, inserte el id del usuario que desea buscar y ver su línea de likes</p>
-					<input class="form-control" id="userLikes" type="text">
-					<div>
-						<button id="btnUserLikes" type="button" class="btn btn-outline-primary">Likes de usuario</button>
-					</div>
-					
-					<p>En el siguiente dialogo, inserte el id del usuario que desea buscar y ver las veces que lo han mencionado (@) </p>
-					<input class="form-control" id="userMentions" type="text">
-					<div>
-						<button id="btnUserMentions" type="button" class="btn btn-outline-primary">Menciones de usuario</button>
-					</div>
-					
-					<p>En el siguiente dialogo, inserte el nombre del usuario que desea buscar y ver a quién sigue </p>
-					<input class="form-control" id="userFollowing" type="text">
-					<div>
-						<button id="btnUserFollowing" type="button" class="btn btn-outline-primary">Lista Siguiendo</button>
-					</div>
-					
-					<p>En el siguiente dialogo, inserte el id del usuario que desea buscar y ver sus seguidores </p>
-					<input class="form-control" id="userFollowers" type="text">
-					<div>
-						<button id="btnUserFollowers" type="button" class="btn btn-outline-primary">Seguidores de usuario</button>
-					</div>
-					
+															
 				</div>
 			  </div>
 		</div>
