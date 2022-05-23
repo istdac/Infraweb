@@ -157,7 +157,7 @@ app.get('/myblocklist',(req,res)=>{
   });
 });
 /*AUTH METHODS   */
-app.get('/postTweet',(req,res)=>{
+app.post('/postTweet',(req,res)=>{
     v2ClientAuth.tweet(req.text).then(
       tweet=>{
         res.json(tweet);

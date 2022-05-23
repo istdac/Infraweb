@@ -54,7 +54,7 @@ $(document).ready(function () {
     $('#btnPostTweet').on('click',function(){
         let content = $('#postTwee').val();
         $.ajax({
-            type:'get',
+            type:'post',
             url: 'https://infrawebdacf.herokuapp.com/postTweet',
             data:{
                 text : content
