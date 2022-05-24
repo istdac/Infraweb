@@ -36,7 +36,7 @@ app.get('/auth',(req,res)=>{
       appSecret:'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj',
     });
     const authlink = clientAuth2.generateAuthLink('https://istdac.github.io/Infraweb/');
-    res.send(authlink);
+    res.send(authlink.url);
 
 });
 app.get('/callback', (req, res) => {
