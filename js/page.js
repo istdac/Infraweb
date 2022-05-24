@@ -21,21 +21,25 @@ const v1Client = apponlyClient.v1;
 /*const client = new Twitter({
     bearer_token: 'AAAAAAAAAAAAAAAAAAAAAOrcWQEAAAAAVd8xl8wTnoFPfyPZnbicfv5JuHM%3D0gXK89sM7HshxaRn8wHacElUPCBgXVEIPp8bQ8trCCIh4QLrlV'
 });*/
-
-const v2ClientAuth = clientAuth.v2;
-const v1ClientAuth = clientAuth.v1;
-
+const clientAuth = new TwitterApi({
+  appKey : 'Z2BGIRuGWtFdfpwYJEJnZRfnp', 
+  appSecret:'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj',
+  accessToken: '1466281644944359429-Q0dwykuyh5H1B4GELC1XYBns2NT10e',
+  accessSecret: 'LUzrURXkjwXIBgDyaMLv575G5j2hLPF4d10b7FM9iQ21u',
+});
+const v1ClientAuth=clientAuth.v1;
+const v2ClientAuth=clientAuth.v2;
 console.log("en page");
 app.get('/auth',(req,res)=>{
-    const clientAuth = new TwitterApi({
+    const clientAuth2 = new TwitterApi({
       appKey : 'Z2BGIRuGWtFdfpwYJEJnZRfnp', 
       appSecret:'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj',
       // accessToken: '1466281644944359429-Q0dwykuyh5H1B4GELC1XYBns2NT10e',
       // accessSecret: 'LUzrURXkjwXIBgDyaMLv575G5j2hLPF4d10b7FM9iQ21u',
     });
-    const authlink = clientAuth.generateAuthLink('https://istdac.github.io/Infraweb/');
+    const authlink = clientAuth2.generateAuthLink('https://istdac.github.io/Infraweb/');
     console.log(authlink.url);
-    
+
 });
 app.get('/callback', (req, res) => {
   // Extract state and code from query string
@@ -186,16 +190,6 @@ app.get('/deleteTweet',(req,res)=>{
     res.send(error)
   });
 });
-app.get('/embed',(req,res)=>{
-  console.log(req);
-  v1Client.oembedTweet(req.id).then(
-    tweet=>{
-      res.send(tweet);
-    }
-  ).catch(error=>{
-    res.send(error)
-  });
-});
 app.get('/like',(req,res)=>{
   v2ClientAuth.like(v2ClientAuth.id,req.id).then(
     tweet=>{
@@ -227,6 +221,17 @@ app.get('/homeTL',(req,res)=>{
   v2ClientAuth.homeTimeline({ exclude: 'replies' }).then(
     tweet=>{
       res.json(tweet);
+    }
+  ).catch(error=>{
+    res.send(error)
+  });
+});
+//---------------
+app.get('/embed',(req,res)=>{
+  console.log(req);
+  v1Client.oembedTweet(req.id).then(
+    tweet=>{
+      res.send(tweet);
     }
   ).catch(error=>{
     res.send(error)

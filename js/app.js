@@ -4,7 +4,7 @@ $(document).ready(function () {
         
         $.ajax({
             type: 'get',
-            url: 'https://infrawebdacf.herokuapp.com/callback',
+            url: 'https://infrawebdacf.herokuapp.com/auth',
             data: {
                 
             },
