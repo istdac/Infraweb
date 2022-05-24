@@ -251,7 +251,28 @@ $(document).ready(function () {
             }
         });
     });//get userMentions
-
+    $('#btnEmbed').on('click',function(){
+        let name = $('#IDTweet').val();
+        console.log('name:'+name);
+        $.ajax({
+            type: 'get',
+            url : 'https://infrawebdacf.herokuapp.com/embed',
+            data :{
+                id:name
+            },
+            success: function(res){
+               console.log('res embed:');
+                console.log(res);
+                $('#resarea').empty();
+                $.each(res.data,function(i,v){
+                   // console.log('Id'+i+' text '+v.text);
+                    $('#resarea').html(
+                        v.html
+                    );
+                });
+            }
+        });
+    });//get userMentions
 });
 function separateId(str) {
     let id = str.split('/');

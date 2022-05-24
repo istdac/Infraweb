@@ -17,21 +17,26 @@ app.use(function(req, res, next) {
 });
 const apponlyClient = new TwitterApi('AAAAAAAAAAAAAAAAAAAAAOrcWQEAAAAAVd8xl8wTnoFPfyPZnbicfv5JuHM%3D0gXK89sM7HshxaRn8wHacElUPCBgXVEIPp8bQ8trCCIh4QLrlV');
 const v2Client = apponlyClient.v2;
+const v1Client = apponlyClient.v1;
 /*const client = new Twitter({
     bearer_token: 'AAAAAAAAAAAAAAAAAAAAAOrcWQEAAAAAVd8xl8wTnoFPfyPZnbicfv5JuHM%3D0gXK89sM7HshxaRn8wHacElUPCBgXVEIPp8bQ8trCCIh4QLrlV'
 });*/
 
-const clientAuth = new TwitterApi({
-  clientId : 'Z2BGIRuGWtFdfpwYJEJnZRfnp', 
-  clientSecret:'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj',
-  accessToken: '1466281644944359429-Q0dwykuyh5H1B4GELC1XYBns2NT10e',
-  accessSecret: 'LUzrURXkjwXIBgDyaMLv575G5j2hLPF4d10b7FM9iQ21u',
-});
 const v2ClientAuth = clientAuth.v2;
 const v1ClientAuth = clientAuth.v1;
 
 console.log("en page");
-
+app.get('/auth',(req,res)=>{
+    const clientAuth = new TwitterApi({
+      appKey : 'Z2BGIRuGWtFdfpwYJEJnZRfnp', 
+      appSecret:'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj',
+      // accessToken: '1466281644944359429-Q0dwykuyh5H1B4GELC1XYBns2NT10e',
+      // accessSecret: 'LUzrURXkjwXIBgDyaMLv575G5j2hLPF4d10b7FM9iQ21u',
+    });
+    const authlink = clientAuth.generateAuthLink('https://istdac.github.io/Infraweb/');
+    console.log(authlink.url);
+    
+});
 app.get('/callback', (req, res) => {
   // Extract state and code from query string
   const { state, code } = req.query;
@@ -182,9 +187,10 @@ app.get('/deleteTweet',(req,res)=>{
   });
 });
 app.get('/embed',(req,res)=>{
-  v1ClientAuth.oembedTweet(req.id).then(
+  console.log(req);
+  v1Client.oembedTweet(req.id).then(
     tweet=>{
-      res.json(tweet);
+      res.send(tweet);
     }
   ).catch(error=>{
     res.send(error)
