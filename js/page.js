@@ -34,11 +34,9 @@ app.get('/auth',(req,res)=>{
     const clientAuth2 = new TwitterApi({
       appKey : 'Z2BGIRuGWtFdfpwYJEJnZRfnp', 
       appSecret:'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj',
-      // accessToken: '1466281644944359429-Q0dwykuyh5H1B4GELC1XYBns2NT10e',
-      // accessSecret: 'LUzrURXkjwXIBgDyaMLv575G5j2hLPF4d10b7FM9iQ21u',
     });
     const authlink = clientAuth2.generateAuthLink('https://istdac.github.io/Infraweb/');
-    console.log(authlink.url);
+    res.send(authlink);
 
 });
 app.get('/callback', (req, res) => {
