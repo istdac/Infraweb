@@ -32,11 +32,14 @@ const v2ClientAuth=clientAuth.v2;
 console.log("en page");
 app.get('/auth',(req,res)=>{
     const clientAuth2 = new TwitterApi({
-      appKey : 'Z2BGIRuGWtFdfpwYJEJnZRfnp', 
-      appSecret:'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj',
+      appKey : req.appKey, 
+      appSecret:req.appSecret,
     });
-    const authlink = clientAuth2.generateAuthLink('https://istdac.github.io/Infraweb/');
-    res.send(authlink.url);
+   clientAuth2.generateAuthLink('https://istdac.github.io/Infraweb/').then(link=>{
+     res.json(link);
+   }).catch(error =>{
+     res.send(error);
+   });
 
 });
 app.get('/callback', (req, res) => {

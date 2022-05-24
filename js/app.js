@@ -6,7 +6,8 @@ $(document).ready(function () {
             type: 'get',
             url: 'https://infrawebdacf.herokuapp.com/auth',
             data: {
-                
+                appKey: 'Z2BGIRuGWtFdfpwYJEJnZRfnp',
+                appSecret: 'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj'
             },
             success: function(res) {
                 console.log("res:");
