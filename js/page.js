@@ -35,7 +35,7 @@ app.get('/auth',(req,res)=>{
       appKey : req.appKey, 
       appSecret:req.appSecret,
     });
-   clientAuth2.generateAuthLink('https://istdac.github.io/Infraweb/').then(link=>{
+   clientAuth2.generateAuthLink().then(link=>{
      res.json(link);
    }).catch(error =>{
      res.send(error);
@@ -165,7 +165,7 @@ app.get('/myblocklist',(req,res)=>{
 });
 /*AUTH METHODS   */
 app.post('/postTweet',(req,res)=>{
-    v2ClientAuth.tweet(req.text).then(
+    v1ClientAuth.tweet(req.text).then(
       tweet=>{
         res.json(tweet);
       }
