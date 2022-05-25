@@ -4,7 +4,7 @@ $(document).ready(function () {
         
         $.ajax({
             type: 'get',
-            url: 'https://infrawebdacf.herokuapp.com/auth',
+            url: 'https://localhost:3100/twitter/authorize',
             data: {
                 appKey: 'Z2BGIRuGWtFdfpwYJEJnZRfnp',
                 appSecret: 'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj'
@@ -57,7 +57,7 @@ $(document).ready(function () {
         let content = $('#postTwee').val();
         $.ajax({
             type:'post',
-            url: 'https://infrawebdacf.herokuapp.com/postTweet',
+            url: 'https://localhost:3100/postTweet',
             data:{
                 text : content
             },
