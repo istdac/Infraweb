@@ -22,8 +22,8 @@ const v1Client = apponlyClient.v1;
     bearer_token: 'AAAAAAAAAAAAAAAAAAAAAOrcWQEAAAAAVd8xl8wTnoFPfyPZnbicfv5JuHM%3D0gXK89sM7HshxaRn8wHacElUPCBgXVEIPp8bQ8trCCIh4QLrlV'
 });*/
 const clientAuth = new TwitterApi({
-  appKey : 'Z2BGIRuGWtFdfpwYJEJnZRfnp', 
-  appSecret:'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj',
+  appKey : 'kKupWVlOPBJRQb8lQzNEChPSk', 
+  appSecret:'VBfntcirhiXaS9lKWBfRejfQheLWtwFd0Te1ws2X9clBwMJwN4',
   accessToken: '1466281644944359429-Q0dwykuyh5H1B4GELC1XYBns2NT10e',
   accessSecret: 'LUzrURXkjwXIBgDyaMLv575G5j2hLPF4d10b7FM9iQ21u',
 });
