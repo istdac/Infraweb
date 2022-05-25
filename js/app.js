@@ -1,20 +1,5 @@
 $(document).ready(function () {
     console.log("dom ready")
-    $('#loginbtn').on('click', function() {
-        
-        $.ajax({
-            type: 'get',
-            url: 'https://localhost:3100/twitter/authorize',
-            data: {
-                appKey: 'Z2BGIRuGWtFdfpwYJEJnZRfnp',
-                appSecret: 'zHTAtEgWEYNk5dZqUkpLblZusuVpzjJoVoQGEhqoo5vkIhVqIj'
-            },
-            success: function(res) {
-                console.log("res:");
-                console.log(res)
-            }
-        })
-    });//getTweet
     $('#btnan').on('click', function() {
         let idStr = $('#IDTweet').val();
         // let data = T.analize(ID);
