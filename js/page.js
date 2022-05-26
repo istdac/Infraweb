@@ -6,15 +6,20 @@ const TWITTER_CONSUMER_API_SECRET_KEY = 'VBfntcirhiXaS9lKWBfRejfQheLWtwFd0Te1ws2
 // const Twitter = require('twitter-v2');
 const { TwitterApi, TweetSearchAllV2Paginator, UserFollowersV2Paginator } = require('twitter-api-v2');
 const app = express();
-app.use(session({ secret: COOKIE_SECRET || 'secret' }));
-app.use(cors());
-//let port = process.env.PORT;
-//if (port == null || port == "") {
-//  port = 8000;
-//}
-//app.listen(port);
-//console.log("port:"+port);
-//app.listen(3100, () => console.log('Server running'));
+//app.use(cors());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+  next();
+});
+let port = process.env.PORT;
+if (port == null || port == "") {
+ port = 8000;
+}
+app.listen(port);
+console.log("port:"+port);
+app.listen(3100, () => console.log('Server running'));
 
 // Authentication
 
@@ -167,70 +172,80 @@ app.get('/myblocklist',(req,res)=>{
   });
 });
 /*AUTH METHODS   */
-app.post('/postTweet',(req,res)=>{
-    v2ClientAuth.tweet(req.text).then(
-      tweet=>{
-        res.json(tweet);
-      }
-    ).catch(error=>{
-      res.send(error)
-    });
-});
-app.get('/reply',(req,res)=>{
-  v1ClientAuth.reply(req.text,req.id).then(
-    tweet=>{
-      res.json(tweet);
-    }
-  ).catch(error=>{
-    res.send(error)
-  });
-});
-app.get('/deleteTweet',(req,res)=>{
-  v1ClientAuth.deleteTweet(req.id).then(
-    tweet=>{
-      res.json(tweet);
-    }
-  ).catch(error=>{
-    res.send(error)
-  });
-});
-app.get('/like',(req,res)=>{
-  v2ClientAuth.like(v2ClientAuth.id,req.id).then(
-    tweet=>{
-      res.json(tweet);
-    }
-  ).catch(error=>{
-    res.send(error)
-  });
-});
-app.get('/unlike',(req,res)=>{
-  v2ClientAuth.unlike(v2ClientAuth.id,req.id).then(
-    tweet=>{
-      res.json(tweet);
-    }
-  ).catch(error=>{
-    res.send(error)
-  });
-});
-app.get('/homeTL',(req,res)=>{
-  v2ClientAuth.homeTimeline({ exclude: 'replies' }).then(
-    tweet=>{
-      res.json(tweet);
-    }
-  ).catch(error=>{
-    res.send(error)
-  });
-});
-app.get('/homeTL',(req,res)=>{
-  v2ClientAuth.homeTimeline({ exclude: 'replies' }).then(
-    tweet=>{
-      res.json(tweet);
-    }
-  ).catch(error=>{
-    res.send(error)
-  });
-});
+// app.post('/postTweet',(req,res)=>{
+//     v2ClientAuth.tweet(req.text).then(
+//       tweet=>{
+//         res.json(tweet);
+//       }
+//     ).catch(error=>{
+//       res.send(error)
+//     });
+// });
+// app.get('/reply',(req,res)=>{
+//   v1ClientAuth.reply(req.text,req.id).then(
+//     tweet=>{
+//       res.json(tweet);
+//     }
+//   ).catch(error=>{
+//     res.send(error)
+//   });
+// });
+// app.get('/deleteTweet',(req,res)=>{
+//   v1ClientAuth.deleteTweet(req.id).then(
+//     tweet=>{
+//       res.json(tweet);
+//     }
+//   ).catch(error=>{
+//     res.send(error)
+//   });
+// });
+// app.get('/like',(req,res)=>{
+//   v2ClientAuth.like(v2ClientAuth.id,req.id).then(
+//     tweet=>{
+//       res.json(tweet);
+//     }
+//   ).catch(error=>{
+//     res.send(error)
+//   });
+// });
+// app.get('/unlike',(req,res)=>{
+//   v2ClientAuth.unlike(v2ClientAuth.id,req.id).then(
+//     tweet=>{
+//       res.json(tweet);
+//     }
+//   ).catch(error=>{
+//     res.send(error)
+//   });
+// });
+// app.get('/homeTL',(req,res)=>{
+//   v2ClientAuth.homeTimeline({ exclude: 'replies' }).then(
+//     tweet=>{
+//       res.json(tweet);
+//     }
+//   ).catch(error=>{
+//     res.send(error)
+//   });
+// });
+// app.get('/homeTL',(req,res)=>{
+//   v2ClientAuth.homeTimeline({ exclude: 'replies' }).then(
+//     tweet=>{
+//       res.json(tweet);
+//     }
+//   ).catch(error=>{
+//     res.send(error)
+//   });
+// });
 //---------------
+app.get('/embed',(req,res)=>{
+  console.log(req);
+  v1Client.oembedTweet(req.id).then(
+    tweet=>{
+      res.send(tweet);
+    }
+  ).catch(error=>{
+    res.send(error)
+  });
+});
 app.get('/embed',(req,res)=>{
   console.log(req);
   v1Client.oembedTweet(req.id).then(
