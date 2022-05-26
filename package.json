@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.3",
     "jQuery": "^1.7.4",
+    "mdb-ui-kit": "^4.1.0",
     "node-fetch": "^3.2.1",
     "oauth": "^0.9.15",
     "request": "^2.88.2",

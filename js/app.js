@@ -160,7 +160,7 @@ $(document).ready(function () {
                 console.log('reslikedby:');
                 console.log(res);
                 $('#resarea').empty();
-                $.each(res.data,function(i,v){
+                $.each(res._realData.data,function(i,v){
                    // console.log('Id'+i+' text '+v.text);
                     $('#resarea').append(
                         '<br/>Usuario:"'+v.id+ '" Nombre: '+v.name +' Username: '+v.username
