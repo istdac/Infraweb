@@ -265,7 +265,7 @@ $(document).ready(function () {
        // console.log('name:'+name);
         $.ajax({
             type: 'get',
-            url : 'https://127.0.0.1:3100/userTrends',
+            url : 'https://infrawebdacf.herokuapp.com/userTrends',
             data :{
                 
             },
