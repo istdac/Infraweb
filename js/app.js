@@ -260,6 +260,28 @@ $(document).ready(function () {
             }
         });
     });//get userMentions
+    $('#btnTrends').on('click',function(){
+       // let name = $('#IDTweet').val();
+       // console.log('name:'+name);
+        $.ajax({
+            type: 'get',
+            url : 'https://127.0.0.1:3100/userTrends',
+            data :{
+                
+            },
+            success: function(res){
+               console.log('res userTrends:');
+                console.log(res);
+                $('#resarea').empty();
+                $.each(res.data,function(i,v){
+                   // console.log('Id'+i+' text '+v.text);
+                    $('#resarea').html(
+                        v.country + "tendencia de "+v.name
+                    );
+                });
+            }
+        });
+    });//get userMentions
 });
 function separateId(str) {
     let id = str.split('/');

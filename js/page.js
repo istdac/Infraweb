@@ -130,6 +130,13 @@ app.get('/myblocklist',(req,res)=>{
     res.send(error)
   });
 });
+app.get('/userTrends',(req,res)=>{
+  v1Client.trendsAvailable().then(trend=>{
+    res.json(trend);
+  }).catch(error =>{
+    res.send(error)
+  });
+});
 /*AUTH METHODS   */
 // app.post('/postTweet',(req,res)=>{
 //     v2ClientAuth.tweet(req.text).then(
