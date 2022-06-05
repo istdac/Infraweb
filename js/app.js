@@ -282,6 +282,49 @@ $(document).ready(function () {
             }
         });
     });//get userMentions
+    $('#btnChatInput').on('click',function(){
+        let op = $('#ChatbotInput').val();
+        let txt = $('#ChatbotInput option:selected').text();
+        console.log(txt)
+        console.log($('#ChatbotInput').val());
+        $('#historialChat').append('<li class="mar-btm"> <div class="media-body pad-hor speech-right"> <div class="speech"> <p>'+txt+'</p> </div> </div></li>');
+        switch($('#ChatbotInput').val()){
+            case "1":
+                console.log('en sw1')
+                $('#historialChat').append('<li class="mar-btm"><div class="media-body pad-hor"><div class="speech"><p>Esta aplicación le provee una manera sencilla de poder obtener varios datos de twitter y sus usuarios</p></div></div></li>');
+                break;
+            case "2":
+                $('#historialChat').append('<li class="mar-btm"><div class="media-body pad-hor"><div class="speech"><p>Para analizar un tweet debe de ingresar o el ID del tweet o el enlace del tweet y seleccionar el botón "Analizar"</p></div></div></li>');
+                break;
+            case "3":
+                $('#historialChat').append('<li class="mar-btm"><div class="media-body pad-hor"><div class="speech"><p>Puede revisar qué usuarios le han dado like a un tweet ingresando el ID o enlace del tweet y seleccionar el botón "Likedby"</p></div></div></li>');
+                break;
+            case "4":
+                $('#historialChat').append('<li class="mar-btm"><div class="media-body pad-hor"><div class="speech"><p>Puede revisar qué usuarios han retwitteado un tweet ingresando el ID o enlace del tweet y seleccionar el botón "Retweetedby"</p></div></div></li>');
+                break;
+            case "5":
+                $('#historialChat').append('<li class="mar-btm"><div class="media-body pad-hor"><div class="speech"><p>Para buscar a un usuario, ingrese su nombre de usuario (su @) y seleccionar el botón "Buscar Usuario"</p></div></div></li>');
+                break;
+            case "6":
+                $('#historialChat').append('<li class="mar-btm"><div class="media-body pad-hor"><div class="speech"><p>Para revisar todos los tweets de un usuario, ingrese su ID de usuario y seleccionar el botón "Línea de Tiempo de Usuario"</p></div></div></li>');
+                break;
+            case "7":
+                $('#historialChat').append('<li class="mar-btm"><div class="media-body pad-hor"><div class="speech"><p>Para revisar los likes de un usuario, ingrese su ID de usuario y seleccionar el botón "Likes de Usuario"</p></div></div></li>');
+                break;
+            case "8":
+                $('#historialChat').append('<li class="mar-btm"><div class="media-body pad-hor"><div class="speech"><p>Para revisar las veces que se ha mencionado a un usuario, ingrese su ID de usuario y seleccionar el botón "Menciones de Usuario"</p></div></div></li>');
+                break;
+            case "9":
+                $('#historialChat').append('<li class="mar-btm"><div class="media-body pad-hor"><div class="speech"><p>Para revisar los usuarios que un usuario sigue, ingrese su ID de usuario y seleccionar el botón "Lista Siguiendo"</p></div></div></li>');
+                break;
+            case "10":
+                $('#historialChat').append('<li class="mar-btm"><div class="media-body pad-hor"><div class="speech"><p>Para revisar los seguidores de un usuario, ingrese su ID de usuario y seleccionar el botón "Seguidores Usuario"</p></div></div></li>');
+                break;
+            default:
+                console.log('def')
+                break;
+        }//switch
+    });
 });
 function separateId(str) {
     let id = str.split('/');

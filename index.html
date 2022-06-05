@@ -65,7 +65,6 @@
 					<p>Operaciónes que requieren el ID de un Tweet</p>
 					<div class="btn-group btn-group-xs">
 						<button id="btnan" type="button" class="btn btn-primary">Analizar</button>
-						<button id="btnEmbed" type="button" class="btn btn-primary">Embed</button>
 						<button id="btnTweetLikedBy" type="button" class="btn btn-primary">Likedby</button>
 						<button id="btnTweetRTBy" type="button" class="btn btn-primary">Retweetedby</button>
 					  </div> 
@@ -77,9 +76,7 @@
 						  <button id="btnUserLikes" type="button" class="btn btn-primary">Likes de usuario</button>
 						  <button id="btnUserMentions" type="button" class="btn btn-primary">Menciones de usuario</button>
 						  <button id="btnUserFollowing" type="button" class="btn btn-primary">Lista Siguiendo</button>
-						  <button id="btnUserFollowers" type="button" class="btn btn-primary">Seguidores de usuario</button>
-						  <button id="btnTrends"type="button" class="btn btn-primary">Tendencias</button>
-						  
+						  <button id="btnUserFollowers" type="button" class="btn btn-primary">Seguidores de usuario</button>						  
 						</div> 
 				</div>
 			  </div>
@@ -113,23 +110,15 @@
     		<div id="demo-chat-body" class="collapse in">
     			<div class="nano has-scrollbar" style="height:380px">
     				<div class="nano-content pad-all" tabindex="0" style="right: -17px;">
-    					<ul class="list-unstyled media-block">
+    					<ul class="list-unstyled media-block" id="historialChat">
     						<li class="mar-btm">
     							<div class="media-body pad-hor">
     								<div class="speech">
-    									<a class="media-heading">John Doe</a>
-    									<p>Hello Lucy, how can I help you today ?</p>
+    									<p>Hola, ¿en qué puedo asistirlo?</p>
     								</div>
     							</div>
     						</li>
-    						<li class="mar-btm">
-    							<div class="media-body pad-hor speech-right">
-    								<div class="speech">
-    									<a class="media-heading">Lucy Doe</a>
-    									<p>Hi, I want to buy a new shoes.</p>
-    								</div>
-    							</div>
-    						</li>
+    						
     					</ul>
     				</div>
     			<div class="nano-pane"><div class="nano-slider" style="height: 141px; transform: translate(0px, 0px);"></div></div></div>
@@ -138,13 +127,20 @@
     			<div class="panel-footer">
     				<div class="row justify-content-center">
     					<div class="input-group">
-							<select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-							  <option selected>Choose...</option>
-							  <option value="1">One</option>
-							  <option value="2">Two</option>
-							  <option value="3">Three</option>
+							<select class="form-select" id="ChatbotInput" aria-label="Example select with button addon">
+							  <option selected>Seleccione...</option>
+							  <option value="1">¿Qué me ofrece esta app?</option>
+							  <option value="2">¿Cómo analizo un tweet?</option>
+							  <option value="3">¿Cómo reviso quién le dió like a un tweet?</option>
+							  <option value="4">¿Cómo reviso quién retwitteó un tweet?</option>
+							  <option value="5">¿Cómo busco a un usuario?</option>
+							  <option value="6">¿Cómo reviso los tweets de un usuario?</option>
+							  <option value="7">¿Cómo reviso los likes de un usuario?</option>
+							  <option value="8">¿Cómo reviso las menciones de un usuario?</option>
+							  <option value="9">¿Cómo reviso a quién sigue un usuario?</option>
+							  <option value="10">¿Cómo reviso los seguidores de un usuario?</option>
 							</select>
-							<button class="btn btn-outline-secondary" type="button">Button</button>
+							<button id="btnChatInput"class="btn btn-outline-secondary" type="button">Preguntar</button>
 						  </div>
     				</div>
     			</div>
