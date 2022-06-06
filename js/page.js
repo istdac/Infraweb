@@ -116,8 +116,7 @@ app.get('/followers',(req,res)=>{
   });
 });
 app.get('/following',(req,res)=>{
-  v2Client.following(req.query.id).then(users=>{
-    console.log(json(users));
+  v2Client.following(req.query.id, { asPaginator: true }).then(users=>{
     res.json(users);
   }).catch(error =>{
     res.send(error)

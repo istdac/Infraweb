@@ -118,7 +118,7 @@ $(document).ready(function () {
                 $.each(res._realData.data,function(i,v){
                    // console.log('Id'+i+' text '+v.text);
                     $('#resarea').append(
-                        '<br/>Seguidor:"'+v.id+ '" Nombre: '
+                        '<br/>Seguidor:"'+v.id+ '" Nombre: '+v.name
                     );
                 });
             }
@@ -138,11 +138,11 @@ $(document).ready(function () {
                 console.log(res);
                 console.log(res._realData.data); */
                 $('#resarea').empty();
-                $.each(res._realData.data,function(i,v){
+                $.each(res.data,function(i,v){
                 console.log('Id'+i+' text '+v.text);
-                    /* $('#resarea').append(
-                        '<br/>Usuarios:"'+v.id+ '" Nombre: '
-                    ); */
+                     $('#resarea').append(
+                        '<br/>Usuario:"'+v.id+ '" Nombre: '+v.name
+                    ); 
                 });
             }
         });
