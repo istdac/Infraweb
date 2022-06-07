@@ -28,7 +28,7 @@ $(document).ready(function () {
         console.log(ID);
         $.ajax({
             type: 'get',
-            url: 'https://infrawebdacf.herokuapp.com/analizar',
+            url: 'https://infrawebdacf.herokuapp.com/analizarUno',
             data: {
                 id : ID
             },
