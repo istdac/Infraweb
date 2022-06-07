@@ -1,6 +1,7 @@
+
 $(document).ready(function () {
     console.log("dom ready")
-    $('#btnan').on('click', function() {
+    $('#btnTwiTXT').on('click', function() {
         let idStr = $('#IDTweet').val();
         // let data = T.analize(ID);
         // console.log(data)
@@ -16,6 +17,24 @@ $(document).ready(function () {
                 console.log("res:");
                 console.log(res.data);
                 $('#resarea').html('Texto: ' +res.data.text);
+            }
+        })
+    });//getTweet
+    $('#btnAnalizar').on('click', function() {
+        let idStr = $('#IDTweet').val();
+        // let data = T.analize(ID);
+        // console.log(data)
+        let ID = separateId(idStr);
+        console.log(ID);
+        $.ajax({
+            type: 'get',
+            url: 'https://infrawebdacf.herokuapp.com/analizar',
+            data: {
+                id : ID
+            },
+            success: function(res) {
+                console.log("res:");
+                console.log(res.data);
                 
             }
         })
@@ -135,10 +154,10 @@ $(document).ready(function () {
             },
             success: function(res){
                /*  console.log('res userTL:');
-                console.log(res);
-                console.log(res._realData.data); */
+                
+                console.log(res._realData.data); */console.log(res);
                 $('#resarea').empty();
-                $.each(res.data,function(i,v){
+                $.each(res._realData.data,function(i,v){
                 console.log('Id'+i+' text '+v.text);
                      $('#resarea').append(
                         '<br/>Usuario:"'+v.id+ '" Nombre: '+v.name
@@ -149,6 +168,7 @@ $(document).ready(function () {
     });//get userFollowing   
     $('#btnTweetLikedBy').on('click',function(){
         let name = $('#IDTweet').val();
+        name=separateId(name);
         console.log('name:'+name);
         $.ajax({
             type: 'get',
@@ -172,6 +192,7 @@ $(document).ready(function () {
     $('#btnTweetRTBy').on('click',function(){
         let name = $('#IDTweet').val();
         console.log('name:'+name);
+        name=separateId(name);
         $.ajax({
             type: 'get',
             url : 'https://infrawebdacf.herokuapp.com/rtby',
@@ -240,7 +261,9 @@ $(document).ready(function () {
     });//get userMentions
     $('#btnEmbed').on('click',function(){
         let name = $('#IDTweet').val();
+        name=separateId(name);
         console.log('name:'+name);
+
         $.ajax({
             type: 'get',
             url : 'https://infrawebdacf.herokuapp.com/embed',

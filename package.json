@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "chart.js": "^3.8.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -21,6 +22,7 @@
     "node-fetch": "^3.2.1",
     "oauth": "^0.9.15",
     "request": "^2.88.2",
+    "sentiment": "^5.0.2",
     "tweet-json-to-html": "^1.0.2",
     "twit": "^2.2.11",
     "twitter-api-v2": "^1.11.0",

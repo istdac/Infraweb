@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const Sentiment = require('sentiment');
+const sentiment = new Sentiment();
 const COOKIE_SECRET = 'secret';
 const TWITTER_CONSUMER_API_KEY = 'kKupWVlOPBJRQb8lQzNEChPSk';
 const TWITTER_CONSUMER_API_SECRET_KEY = 'VBfntcirhiXaS9lKWBfRejfQheLWtwFd0Te1ws2X9clBwMJwN4';
@@ -37,6 +39,8 @@ const clientAuth = new TwitterApi({
 });
 const v1ClientAuth=clientAuth.v1;
 const v2ClientAuth=clientAuth.v2;
+
+
 console.log("en page");
 app.get('/Singletweet', (req,res) => {
 /*   //console.log(req);
@@ -57,6 +61,14 @@ app.get('/Singletweet', (req,res) => {
 /* app.get('/tweets',(req,res)=>{
     v2Client.tweet(req.query.text);
 }); */
+app.get('/analizarUno', (req,res) => {
+      v2Client.singleTweet(req.query.id).then(twwwt =>{
+      let resu = sentiment.analyze(twwwt.data.text);
+      res.json(resu);  
+      }).catch(error =>{
+        res.send(error)
+      });
+  });
 app.get('/userTL', (req,res) => {
   /*   //console.log(req);
       client
