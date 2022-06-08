@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     console.log("dom ready")
     $('#btnTwiTXT').on('click', function() {
@@ -33,10 +32,72 @@ $(document).ready(function () {
                 id : ID
             },
             success: function(res) {
-                console.log("res:");
-                console.log(res.data);
-                
-            }
+                //console.log("res:");
+                //console.log(res);
+                $('#resarea').empty();
+                $('#resarea').append('El sentimiento del tweet siene una puntuación de '+res.score+'<br>con una puntuación relativa de '+res.comparative+'<br>gracias a palabras como<br>');
+                let glabels = [];
+                let gdata = [];
+                 //Empty div chart for update
+                 $('#chartdiv').empty();
+                 $('#chartdiv').html('<canvas id="myChart" style="width:100%;max-width:700px align-items-center"></canvas>');
+                const ctx = document.getElementById('myChart').getContext('2d');
+                let backgroundColors= [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(255, 205, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(201, 203, 207, 0.7)'
+                  ]
+                let borderColors= [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                  ]
+                let calc = res.calculation;
+                for(let i=0;i<calc.length;i++){
+                    let key = Object.keys(calc[i])[0];
+                    //console.log(key);
+                    //console.log(calc[i][key])
+                    $('#resarea').append(key + " con puntuación de "+calc[i][key]+'<br>');
+                    glabels.push(key);
+                    gdata.push(calc[i][key]);
+                }
+                //Datos chart
+               console.log('labels'+glabels);
+               console.log('data'+gdata);
+               let config = {
+                type:'bar',
+                data:{
+                    labels:glabels,
+                    datasets:[
+                        {
+                         label:'Calificación de palabra',
+                         data:gdata,
+                         backgroundColor:backgroundColors,
+                         borderColor:borderColors,
+                         borderWidth:1
+                        },
+                    ]
+                },
+                options: {
+                    scales: {
+                      y: {
+                        beginAtZero: true
+                      }
+                    }
+                  },
+            } 
+               
+               const myChart = new Chart(ctx,config);//chart
+               
+            }//success
         })
     });//getTweet
     $('#btnUserSearch').on('click',function(){
