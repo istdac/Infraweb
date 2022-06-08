@@ -74,27 +74,27 @@ $(document).ready(function () {
                console.log('labels'+glabels);
                console.log('data'+gdata);
                let config = {
-                type:'bar',
-                data:{
-                    labels:glabels,
-                    datasets:[
-                        {
-                         label:'Calificación de palabra',
-                         data:gdata,
-                         backgroundColor:backgroundColors,
-                         borderColor:borderColors,
-                         borderWidth:1
-                        },
-                    ]
-                },
-                options: {
-                    scales: {
-                      y: {
-                        beginAtZero: true
-                      }
-                    }
-                  },
-            } 
+                    type:'bar',
+                    data:{
+                        labels:glabels,
+                        datasets:[
+                            {
+                            label:'Calificación de palabra',
+                            data:gdata,
+                            backgroundColor:backgroundColors,
+                            borderColor:borderColors,
+                            borderWidth:1
+                            },
+                        ]
+                    },
+                    options: {
+                        scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                        }
+                    },
+                } 
                
                const myChart = new Chart(ctx,config);//chart
                
@@ -161,27 +161,91 @@ $(document).ready(function () {
                 });
             }
         });
-        $('#btnUserTLAnalize').on('click',function(){
-            let name = $('#UserID').val();
-            console.log('name:'+name);
-            $.ajax({
-                type: 'get',
-                url : 'https://infrawebdacf.herokuapp.com/analizarUserTL',
-                data :{
-                    id:name
-                },
-                success: function(res){
-                    console.log('res userTLan:');
-                    console.log(res);
-                    console.log(res._realData.data); 
-                    $('#resarea').empty();
-                    $('#chartdiv').empty();
-                    
-                }
-            });
-    
-    
     });//get user TL
+    $('#btnUserTLAnalize').on('click',function(){
+        let name = $('#UserID').val();
+        console.log('name:'+name);
+        $.ajax({
+            type: 'get',
+            url : 'https://infrawebdacf.herokuapp.com/analizarUserTL',
+            data :{
+                id:name
+            },
+            success: function(res){
+                console.log('res userTLan:');
+                console.log(res);
+                // console.log(Object.keys(res[2]))
+                // console.log('valores: '+res[2]['calculation'][0][Object.keys(res[2]['calculation'][0])])
+                // console.log('llaves: ' + Object.keys(res[2]['calculation'][0]))
+                let gkeys = [];
+                let gvalues=[];
+                for(let i=0;i<res.length;i++){
+                    console.log('Analisis ' + i)
+                    for(let j = 0; j < res[i]['calculation'].length; j++) {
+                        let valueArray = res[i]['calculation'][j];
+                        let keys = Object.keys(valueArray);
+                        let values = []
+
+                        for(let k=0; k < keys.length; k++) {
+                            values.push(valueArray[keys[k]])
+
+                            console.log(keys[k] + ': ' + values[k])
+                            gkeys.push(keys[k])
+                            gvalues.push(values[k])
+                        }
+                    }
+                }
+                $('#resarea').empty();
+                $('#chartdiv').empty();
+                $('#chartdiv').html('<canvas id="myChart" style="width:100%;max-width:700px align-items-center"></canvas>');
+                const ctx = document.getElementById('myChart').getContext('2d');
+                let backgroundColors= [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(255, 205, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(201, 203, 207, 0.7)'
+                  ]
+                let borderColors= [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                  ]
+                  console.log('keys'+gkeys)
+                  console.log('values'+gvalues)
+                let config = {
+                    type:'bar',
+                    data:{
+                        labels:gkeys,
+                        datasets:[
+                            {
+                            label:'Calificación de palabra',
+                            data:gvalues,
+                            backgroundColor:backgroundColors,
+                            borderColor:borderColors,
+                            borderWidth:1
+                            },
+                        ]
+                    },
+                    options: {
+                        scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                        }
+                    },
+                } 
+               
+               const myChart = new Chart(ctx,config);//chart
+            }
+        });
+    });
     $('#btnUserLikes').on('click',function(){
         let name = $('#UserID').val();
         console.log('name:'+name);
