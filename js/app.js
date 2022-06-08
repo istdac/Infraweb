@@ -13,6 +13,7 @@ $(document).ready(function () {
                 id : ID
             },
             success: function(res) {
+                $('#chartdiv').empty();
                 console.log("res:");
                 console.log(res.data);
                 $('#resarea').html('Texto: ' +res.data.text);
@@ -112,6 +113,7 @@ $(document).ready(function () {
             success: function(res){
                 console.log('res usernameSearch:');
                 console.log(res);
+                $('#chartdiv').empty();
                 $('#resarea').html('Usuario: '+ res.data.id+
                 '<br/> Nombre: '+res.data.name+
                 '<br/> Nombre de usuario: '+res.data.username);
@@ -127,6 +129,7 @@ $(document).ready(function () {
                 text : content
             },
             success:function(res){
+                $('#chartdiv').empty();
                 console.log("res post tweet:");
                 console.log(res);
                 $('#resultados').text(
@@ -149,6 +152,7 @@ $(document).ready(function () {
                 console.log(res);
                 console.log(res._realData.data); */
                 $('#resarea').empty();
+                $('#chartdiv').empty();
                 $.each(res._realData.data,function(i,v){
                    // console.log('Id'+i+' text '+v.text);
                     $('#resarea').append(
@@ -157,6 +161,26 @@ $(document).ready(function () {
                 });
             }
         });
+        $('#btnUserTLAnalize').on('click',function(){
+            let name = $('#UserID').val();
+            console.log('name:'+name);
+            $.ajax({
+                type: 'get',
+                url : 'https://infrawebdacf.herokuapp.com/analizarUserTL',
+                data :{
+                    id:name
+                },
+                success: function(res){
+                    console.log('res userTLan:');
+                    console.log(res);
+                    console.log(res._realData.data); 
+                    $('#resarea').empty();
+                    $('#chartdiv').empty();
+                    
+                }
+            });
+    
+    
     });//get user TL
     $('#btnUserLikes').on('click',function(){
         let name = $('#UserID').val();
@@ -172,6 +196,7 @@ $(document).ready(function () {
                 console.log(res);
                 console.log(res._realData.data); */
                 $('#resarea').empty();
+                $('#chartdiv').empty();
                 $.each(res._realData.data,function(i,v){
                    // console.log('Id'+i+' text '+v.text);
                     $('#resarea').append(
@@ -195,6 +220,7 @@ $(document).ready(function () {
                 console.log(res);
                 console.log(res._realData.data); */
                 $('#resarea').empty();
+                $('#chartdiv').empty();
                 $.each(res._realData.data,function(i,v){
                    // console.log('Id'+i+' text '+v.text);
                     $('#resarea').append(
@@ -218,6 +244,7 @@ $(document).ready(function () {
                 
                 console.log(res._realData.data); */console.log(res);
                 $('#resarea').empty();
+                $('#chartdiv').empty();
                 $.each(res._realData.data,function(i,v){
                 console.log('Id'+i+' text '+v.text);
                      $('#resarea').append(
@@ -241,6 +268,7 @@ $(document).ready(function () {
                 console.log('reslikedby:');
                 console.log(res);
                 $('#resarea').empty();
+                $('#chartdiv').empty();
                 $.each(res._realData.data,function(i,v){
                    // console.log('Id'+i+' text '+v.text);
                     $('#resarea').append(
@@ -263,7 +291,7 @@ $(document).ready(function () {
             success: function(res){
                 console.log('res retweetedby:');
                 console.log(res);
-                
+                $('#chartdiv').empty();
                 $('#resarea').empty();
                 $.each(res.data,function(i,v){
                    // console.log('Id'+i+' text '+v.text);
@@ -288,6 +316,7 @@ $(document).ready(function () {
                 console.log(res);
                 console.log(res._realData.data); */
                 $('#resarea').empty();
+                $('#chartdiv').empty();
                 $.each(res._realData.data,function(i,v){
                    // console.log('Id'+i+' text '+v.text);
                     $('#resarea').append(
@@ -311,6 +340,7 @@ $(document).ready(function () {
                 console.log(res);
                 console.log(res._realData.data); */
                 $('#resarea').empty();
+                $('#chartdiv').empty();
                 $.each(res._realData.data,function(i,v){
                    // console.log('Id'+i+' text '+v.text);
                     $('#resarea').append(
@@ -335,6 +365,7 @@ $(document).ready(function () {
                console.log('res embed:');
                 console.log(res);
                 $('#resarea').empty();
+                $('#chartdiv').empty();
                 $.each(res.data,function(i,v){
                    // console.log('Id'+i+' text '+v.text);
                     $('#resarea').html(
@@ -357,6 +388,7 @@ $(document).ready(function () {
                console.log('res userTrends:');
                 console.log(res);
                 $('#resarea').empty();
+                $('#chartdiv').empty();
                 $.each(res.data,function(i,v){
                    // console.log('Id'+i+' text '+v.text);
                     $('#resarea').html(

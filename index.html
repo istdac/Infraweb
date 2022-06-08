@@ -29,76 +29,7 @@
 	<div class="d-flex banner"></div>
 
 	<!-- Info Section -->
-	<div class="d-flex px-5 flex-row justify-content-around my-3 flex-wrap">
-		<div class="callOuts d-flex flex-column flex-fill p-4 mx-2 my-2 my-lg-1 text-center">
-			<img src="images/Post_Icon.png" class="img-fluid mx-auto d-block">
-			<h3>Publicaciones</h3>
-			<p>Analize sus publicaciones con nuestra app.</p>
-		</div>
-		<div class="callOuts d-flex flex-column flex-fill p-4 mx-2 my-2 my-lg-1 text-center">
-			<img src="images/Reception_Icon.png" class="img-fluid mx-auto d-block">
-			<h3>Recepción</h3>
-			<p>Obtenga la recepción de su contenido.</p>
-		</div>
-		<div class="callOuts d-flex flex-column flex-fill p-4 mx-2 my-2 my-lg-1 text-center">
-			<img src="images/DataAnalis.png" class="img-fluid mx-auto d-block">
-			<h3>Análisis</h3>
-			<p>Analizamos las estadísticas recopiladas de su contenido.</p>
-		</div>
-	</div>
-<!--Sección de mineria-->
-	<div class="d-flex justify-content-center ">
-		<div class="publicacion"></div>
-		<div class="botones-pub">
-			<div>
-				<div class="form-group">
-					<div class="form-group row">
-						<label for="IDTweet" class="col-sm-2 col-form-label">ID Tweet</label>
-						<div class="col-sm-10">
-						  <input type="text" class="form-control" id="IDTweet" placeholder="IDTweet">
-						</div>
-					  </div>
-					  <div class="form-group row">
-						<label for="UserID" class="col-sm-2 col-form-label">UserID</label>
-						<div class="col-sm-10">
-						  <input type="text" class="form-control" id="UserID" placeholder="UserID">
-						</div>
-					  </div>
-					<p>Operaciónes que requieren el ID de un Tweet</p>
-					<div class="btn-group btn-group-xs">
-						<button id="btnTwiTXT" type="button" class="btn btn-primary">Texto de Tweet</button>
-						<button id="btnAnalizar" type="button" class="btn btn-primary">Analizar un solo tweet</button>
-						<button id="btnTweetLikedBy" type="button" class="btn btn-primary">Likedby</button>
-						<button id="btnTweetRTBy" type="button" class="btn btn-primary">Retweetedby</button>
-					  </div> 
-					
-					  <p>Operaciónes que requieren el ID o nombre de un usuario</p>
-					  <div class="btn-group btn-group-xs">
-						  <button id="btnUserSearch" type="button" class="btn btn-primary">Buscar Usuario</button>
-						  <button id="btnUserTL" type="button" class="btn btn-primary">Línea de tiempo de usuario</button>
-						  <button id="btnUserLikes" type="button" class="btn btn-primary">Likes de usuario</button>
-						  <button id="btnUserMentions" type="button" class="btn btn-primary">Menciones de usuario</button>
-						  <button id="btnUserFollowing" type="button" class="btn btn-primary">Lista Siguiendo</button>
-						  <button id="btnUserFollowers" type="button" class="btn btn-primary">Seguidores de usuario</button>						  
-						</div> 
-				</div>
-			  </div>
-		</div>
-	</div>
-<!-- Resultados-->
-	<div class = "d-flex justify-content-center" >
-		<div id="resultados">
-			<h2>Resultados de la operación</h2>
-			<div id = "resarea">
-
-			</div>
-		</div>	
-	</div>
-	<div id="chartdiv">
-		<canvas id="myChart" style="width:100%;max-width:700px align-items-center"></canvas>
-	  </div>
-	<div>
-		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container d-flex flex-row justify-content-center">
     <div class="col-md-12 col-lg-6">
         <div class="panel">
@@ -131,7 +62,7 @@
     
     			<!--Widget footer-->
     			<div class="panel-footer">
-    				<div class="row justify-content-center">
+    				<div class="row align-content-center">
     					<div class="input-group">
 							<select class="form-select" id="ChatbotInput" aria-label="Example select with button addon">
 							  <option selected>Seleccione...</option>
@@ -154,6 +85,59 @@
     	</div>
     </div>
 </div>
+	<!--Sección de mineria-->
+	<div class="d-flex justify-content-center ">
+		<div class="publicacion"></div>
+		<div class="botones-pub">
+			<div>
+				<div class="form-group">
+					<div class="form-group row">
+						<label for="IDTweet" class="col-sm-2 col-form-label">ID Tweet</label>
+						<div class="col-sm-10">
+						  <input type="text" class="form-control" id="IDTweet" placeholder="IDTweet">
+						</div>
+					  </div>
+					  <div class="form-group row">
+						<label for="UserID" class="col-sm-2 col-form-label">UserID</label>
+						<div class="col-sm-10">
+						  <input type="text" class="form-control" id="UserID" placeholder="UserID">
+						</div>
+					  </div>
+					<p>Operaciónes que requieren el ID de un Tweet</p>
+					<div class="btn-group btn-group-xs">
+						<button id="btnTwiTXT" type="button" class="btn btn-primary">Texto de Tweet</button>
+						<button id="btnAnalizar" type="button" class="btn btn-primary">Analizar un solo tweet</button>
+						<button id="btnTweetLikedBy" type="button" class="btn btn-primary">Likedby</button>
+						<button id="btnTweetRTBy" type="button" class="btn btn-primary">Retweetedby</button>
+					  </div> 
+					
+					  <p>Operaciónes que requieren el ID o nombre de un usuario</p>
+					  <div class="btn-group btn-group-xs">
+						  <button id="btnUserSearch" type="button" class="btn btn-primary">Buscar Usuario</button>
+						  <button id="btnUserTL" type="button" class="btn btn-primary">Línea de tiempo de usuario</button>
+						  <button id="btnUserTLAnalize" type="button" class="btn btn-primary">Analizar la Línea de tiempo de usuario</button>
+						  <button id="btnUserLikes" type="button" class="btn btn-primary">Likes de usuario</button>
+						  <button id="btnUserMentions" type="button" class="btn btn-primary">Menciones de usuario</button>
+						  <button id="btnUserFollowing" type="button" class="btn btn-primary">Lista Siguiendo</button>
+						  <button id="btnUserFollowers" type="button" class="btn btn-primary">Seguidores de usuario</button>						  
+						</div> 
+				</div>
+			  </div>
+		</div>
+	</div>
+<!-- Resultados-->
+	<div class = "d-flex justify-content-center" >
+		<div id="resultados">
+			<h2>Resultados de la operación</h2>
+			<div id = "resarea">
+
+			</div>
+		</div>	
+	</div>
+	<div id="chartdiv">
+	  </div>
+	<div>
+		
 	</div>
 	<div class="d-flex align-items-center px-5 mb-3">
 		<div class="w-25 pl-2">

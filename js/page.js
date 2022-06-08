@@ -85,6 +85,19 @@ app.get('/userTL', (req,res) => {
           res.send(error)
         });
   });
+  app.get('/analizarUserTL', (req,res) => {
+
+          v2Client.userTimeline(req.query.id).then(twwwt =>{
+            let resutot=[];
+            for(const t of twwwt){
+              resutot.push(sentiment.analyze(t.text));
+            }
+            res.json(resutot);
+          }).catch(error =>{
+            res.send(error)
+          });
+    });
+  
   app.get('/mentions',(req,res)=>{
     v2Client.userMentionTimeline(req.query.id).then(tweets=>{
       res.json(tweets);
